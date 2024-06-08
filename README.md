@@ -40,9 +40,38 @@ analyzing the Cyclistic historical bike trip data to identify trends.
 The data used comes from Cyclistic is first party data, so the data is appropriate for completing the business task. I used the last 12 months of data (04/2023 to 04/2024). This data is public and available for use under this [license](https://divvybikes.com/data-license-agreement) 
   ### Data sources used
   [Historical data from primary source, Cyclistic](https://divvy-tripdata.s3.amazonaws.com/index.html) 
+  
+  [April 2024](https://divvy-tripdata.s3.amazonaws.com/202404-divvy-tripdata.zip)
+  
+  [March 2024](https://divvy-tripdata.s3.amazonaws.com/202403-divvy-tripdata.zip)
+  
+  [February 2024](https://divvy-tripdata.s3.amazonaws.com/202402-divvy-tripdata.zip)
+  
+  [January 2024](https://divvy-tripdata.s3.amazonaws.com/202401-divvy-tripdata.zip)
+  
+  [December 2023](https://divvy-tripdata.s3.amazonaws.com/202312-divvy-tripdata.zip)
+  
+  [November 2023](https://divvy-tripdata.s3.amazonaws.com/202311-divvy-tripdata.zip)
+  
+  [October 2023](https://divvy-tripdata.s3.amazonaws.com/202310-divvy-tripdata.zip)
+  
+  [September 2023](https://divvy-tripdata.s3.amazonaws.com/202309-divvy-tripdata.zip)
+  
+  [August 2023](https://divvy-tripdata.s3.amazonaws.com/202308-divvy-tripdata.zip)
+  
+  [July 2023](https://divvy-tripdata.s3.amazonaws.com/202307-divvy-tripdata.zip)
+  
+  [June 2023](https://divvy-tripdata.s3.amazonaws.com/202306-divvy-tripdata.zip)
+  
+  [May 2023](https://divvy-tripdata.s3.amazonaws.com/202305-divvy-tripdata.zip)
+  
+  [April 2023](https://divvy-tripdata.s3.amazonaws.com/202304-divvy-tripdata.zip)
 ## PROCESS
 I began with Google Sheets but quickly realized the dataset was too large to use spreadsheets. I then went to BigQuery for SQL.
 These are the steps I took to clean the data and verify its integrity.
+
+When uploading the csv files, some of the files were too large to be uploaded to a single table so, some months had to be split into 2 or 3 tables. After creating tables for each csv file, I used UNION ALL statements to create one table with all the data of the last 12 months.
+
 Combined data
 Summary statistics
 ## ANALYZE
