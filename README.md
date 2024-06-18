@@ -73,9 +73,7 @@ These are the steps I took to clean the data and verify its integrity.
 When uploading the csv files, some of the files were too large to be uploaded to a single table so, some months had to be split into 2 or 3 tables. After creating tables for each csv file, I used UNION ALL statements to create one table with all the data of the last 12 months.
 
 Combined data
-## Combining Multiple Tables
-
-To combine multiple tables into one, the following SQL query was used. You can find the full query in the [combine_tables.sql](combine_tables.sql) file.
+You can find the full query in the [combine_tables.sql](combine_tables.sql) file.
 
 ```sql
 CREATE OR REPLACE TABLE `cyclistic-bike-share-425221.bike_share_data.combined_cyclistic_data` AS
@@ -121,7 +119,34 @@ CREATE OR REPLACE TABLE `cyclistic-bike-share-425221.bike_share_data.combined_cy
   UNION ALL
   SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202404-divvy-tripdata`;
 ```
+After the data was combined into one table, it was time to clean the data. I began with looking for discrepencies in the ride_id column.
+```sql
+SELECT 
+  DISTINCT ride_id
+FROM 
+  `cyclistic-bike-share-425221.bike_share_data.combined_cyclistic_data` LIMIT 1000
+```
+All the the id's in the column come out to 16 characters.
 
+I noticed ther were some null values and at first I thought the data uploaded wrong but then I noticed it was only some and not all.
+```sql
+SELECT 
+  COUNTIF(ride_id IS NULL) AS null_ride_id,
+  COUNTIF(rideable_type IS NULL) AS null_rideable_type,
+  COUNTIF(started_at IS NULL) AS null_started_at,
+  COUNTIF(ended_at IS NULL) AS null_ended_at,
+  COUNTIF(start_station_name IS NULL) AS null_start_station_name,
+  COUNTIF(start_station_id IS NULL) AS null_start_station_id,
+  COUNTIF(end_station_name IS NULL) AS null_end_station_name,
+  COUNTIF(end_station_id IS NULL) AS null_end_station_id,
+  COUNTIF(start_lat IS NULL) AS null_start_lat,
+  COUNTIF(start_lng IS NULL) AS null_start_lng,
+  COUNTIF(end_lat IS NULL) AS null_end_lat,
+  COUNTIF(end_lng IS NULL) AS null_end_lng,
+  COUNTIF(member_casual IS NULL) AS null_member_casual
+FROM `cyclistic-bike-share-425221.bike_share_data.combined_cyclistic_data`;
+```
+Since there are over 5 million rows, I decided to remove the null values because there is still sufficient data to perform analysis. 
 Summary statistics
 ## ANALYZE
 ## SHARE
