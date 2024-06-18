@@ -73,6 +73,55 @@ These are the steps I took to clean the data and verify its integrity.
 When uploading the csv files, some of the files were too large to be uploaded to a single table so, some months had to be split into 2 or 3 tables. After creating tables for each csv file, I used UNION ALL statements to create one table with all the data of the last 12 months.
 
 Combined data
+## Combining Multiple Tables
+
+To combine multiple tables into one, the following SQL query was used. You can find the full query in the [combine_tables.sql](combine_tables.sql) file.
+
+```sql
+CREATE OR REPLACE TABLE `cyclistic-bike-share-425221.bike_share_data.combined_cyclistic_data` AS
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202305-divvy-tripdata-1`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202305-divvy-tripdata-2`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202305-divvy-tripdata-3`
+  UNION ALL                                                                                                                                               
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202306-divvy-tripdata-1`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202306-divvy-tripdata-2`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202307-divvy-tripdata-1`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202307-divvy-tripdata-2`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202308-divvy-tripdata-1`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202308-divvy-tripdata-2`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202308-divvy-tripdata-3`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202309-divvy-tripdata-1`
+  UNION ALL 
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202309-divvy-tripdata-2`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202309-divvy-tripdata-3`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202310-divvy-tripdata-1`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202310-divvy-tripdata-2`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202311-divvy-tripdata`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202312-divvy-tripdata`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202401-divvy-tripdata`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202402-divvy-tripdata`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202403-divvy-tripdata`
+  UNION ALL
+  SELECT * FROM `cyclistic-bike-share-425221.bike_share_data.202404-divvy-tripdata`;
+```
+
 Summary statistics
 ## ANALYZE
 ## SHARE
