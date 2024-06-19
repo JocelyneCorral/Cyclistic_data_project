@@ -35,6 +35,10 @@ analyzing the Cyclistic historical bike trip data to identify trends.
 ## ASK
   ### Business Task
   Analyze the differences in how annual members and casual riders use Cyclistic bikes. Identifying patterns and trends. These insights will help to develop a marketing strategy aimed at converting casual members into annual members, which will ultimately increase profitability for Cyclistic.
+  ## Stakeholders
+    Lily Moreno: The director of marketing and my manager.
+    Cyclistic marketing analytics team.
+    Cyclistic executive team
   
 ## PREPARE
 The data used comes from Cyclistic is first party data, so the data is appropriate for completing the business task. I used the last 12 months of data (04/2023 to 04/2024). This data is public and available for use under this [license](https://divvybikes.com/data-license-agreement) 
@@ -146,7 +150,8 @@ SELECT
   COUNTIF(member_casual IS NULL) AS null_member_casual
 FROM `cyclistic-bike-share-425221.bike_share_data.combined_cyclistic_data`;
 ```
-Since there are over 5 million rows, I decided to remove the null values because there is still sufficient data to perform analysis. 
+These results showed over 200,000 null values in each of the columns labeled: start_station_name, start_station_id, end_station_name, and end_station_id.
+Though there are over 5 million rows, I determined there were too many null values to remove from the dataset.
 Summary statistics
 ## ANALYZE
 ## SHARE
